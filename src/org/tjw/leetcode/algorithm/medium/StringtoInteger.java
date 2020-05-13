@@ -105,7 +105,6 @@ public class StringtoInteger {
             if(res <= Integer.MIN_VALUE) return Integer.MIN_VALUE;
             if(res >= Integer.MAX_VALUE) return Integer.MAX_VALUE;
 
-
             return (int)res;
         }
 
