@@ -1,4 +1,4 @@
-package org.tjw.leetcode.algorithm.changlle30;
+package org.tjw.leetcode.algorithm.slidingwindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
