@@ -27,11 +27,11 @@ public class Tree {
 
     // 一维用于计算背包问题放置的连通块大小
     int[] sz;
-    // head 封装 n 个元素，代表每个节点头部 edge 的下标
+    // head 封装 n 个元素，第 n 个元素代表 第 n 个节点 头部边 在 edges 的下标
     int[] head;
     // 进行(边 -> 价值)动态规划
     long[][] dp;
-    // 封装边
+    // 封装边，用于存放边的数组，其中链表关系由edge.next指向的，关于edges的index下标维护
     Edge[] edges;
     // edge索引
     int eid;
@@ -54,41 +54,51 @@ public class Tree {
         tree.dp(1, 0);
     }
 
-    // 封边，然后添加链表，类似于jdk1.7头插法
-    public void addEdge(int u, int v) {
-        edges[++ eid].next = head[u];
-        edges[eid].to = v;
-        head[u] = eid;
+    // 封边，然后添加链表，类似于jdk1.7 hashmap头插法
+    public void addEdge(int prev, int to) {
+        // 将当前边指向下一条边，即指向当前head存放的索引
+        edges[++ eid].next = head[prev];
+        // 设置指向节点值
+        edges[eid].to = to;
+        // 将head当前索引指向edges存放的当前边索引
+        head[prev] = eid;
     }
 
-    public void dp(int u,int fa) {
-        sz[u] = 1;
-        dp[u][0] = 1;
-        dp[u][1] = 1;
+    // 传入当前节点 val，前一个节点 pval
+    public void dp(int val,int pval) {
+        sz[val] = 1;
+        // 都需要弄 1，因为是乘法，但是其他没遍历到的地方就不需要弄成 1
+        dp[val][0] = 1;
+        dp[val][1] = 1;
 
-        // 从头部遍历链表
-        for(int i = head[u];i != 0;i = edges[i].next) {
-            int v = edges[i].to;
-            if(v == fa) continue;
-            dp(v,u);
+        // 拿到当前节点head下的 边 edges索引，因为是一个链表结构，开始从头遍历，edges[i].next为链表下一条 边
+        for(int i = head[val];i != 0;i = edges[i].next) {
+            int toval = edges[i].to;
+            // 不遍历指向前一个节点的 边
+            if(toval == pval) continue;
+            dp(toval, val);
 
-            sz[u] += sz[v];
-            for(int j = sz[u]; j >= 1; --j) { //枚举i所在的联通块大小
-                for(int k = Math.min(j, sz[u]-sz[v]); k >= Math.max(1, j-sz[v]); --k) { //枚举子树根结点所在联通块大小
-                    dp[u][j] = Math.max(dp[u][j], dp[u][k] * dp[v][j-k]);
+            // 将上个节点大小拍进当前节点大小，相当于联通了，当前节点成了连通块
+            sz[val] += sz[toval];
+
+            // 进入背包问题，先遍历当前节点连通块大小
+            for(int j = sz[val]; j >= 1;j --) {
+                // 遍历子树根结点所在联通块大小
+                for(int k = Math.min(j, sz[val] - sz[toval]);k >= Math.max(1, j - sz[toval]);k --) {
+                    dp[val][j] = Math.max(dp[val][j], dp[val][k] * dp[toval][j-k]);
                 }
             }
         }
 
-        for(int i = 1; i <= sz[u]; ++i) {
-            dp[u][0] = Math.max(dp[u][0], dp[u][i] * i);
+        for(int i = 1; i <= sz[val]; ++i) {
+            dp[val][0] = Math.max(dp[val][0], dp[val][i] * i);
         }
     }
 
     class Edge {
         // 链表结构，使用数组，next代表数组edges的下标，指向edge的下一条边
         int next;
-        // to是指向节点
+        // to是存放，从当前节点指向另一个节点的值
         int to;
     }
 }

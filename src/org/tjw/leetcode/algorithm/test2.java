@@ -1,18 +1,19 @@
 package org.tjw.leetcode.algorithm;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.concurrent.Callable;
+public class test2 {
+    int[] aaa;
+    int[] bbb;
+    int[] ccc;
+    int[] ddd;
+    int[] eee;
 
-public class test {
-
-    int[] aaa = new int[10000000];
-    int[] bbb = new int[10000000];
-    int[] ccc = new int[10000000];
-    int[] ddd = new int[10000000];
-    int[] eee = new int[10000000];
+    public test2() {
+        aaa = new int[10000000];
+        bbb = new int[10000000];
+        ccc = new int[10000000];
+        ddd = new int[10000000];
+        eee = new int[10000000];
+    }
 
     public void count() {
         long begin = System.currentTimeMillis();
@@ -22,11 +23,10 @@ public class test {
         for(int i = 0;i < ccc.length;i++) count ++;
         long end = System.currentTimeMillis();
         System.out.println(end - begin);
-
     }
 
     public static void main(String[] args) throws Exception {
-        test test = new test();
+        test2 test = new test2();
         test.count();
     }
 
