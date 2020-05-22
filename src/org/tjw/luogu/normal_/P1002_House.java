@@ -1,4 +1,4 @@
-package org.tjw.luogu.province;
+package org.tjw.luogu.normal_;
 
 import java.util.Scanner;
 
