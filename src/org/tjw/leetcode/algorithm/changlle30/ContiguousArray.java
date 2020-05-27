@@ -15,6 +15,11 @@ public class ContiguousArray {
 
         int[] maps = new int[]{-1,1};
 
+        /**
+         * 通过hashmap存放结果的长度，如果再次发现重合，就进行长度处理
+         * @param nums
+         * @return
+         */
         public int findMaxLength(int[] nums) {
             if(nums == null ||nums.length < 2) return 0;
 
@@ -34,7 +39,6 @@ public class ContiguousArray {
                     bigmap[index] = i + 1;
                 }
             }
-
             return result;
         }
 
