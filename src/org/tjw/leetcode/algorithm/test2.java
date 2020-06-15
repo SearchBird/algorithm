@@ -13,6 +13,7 @@ public class test2 {
         ccc = new int[10000000];
         ddd = new int[10000000];
         eee = new int[10000000];
+        int a = (int) Math.log(1);
     }
 
     public void count() {

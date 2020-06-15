@@ -2,14 +2,14 @@ package org.tjw.luogu.province;
 
 
 /**
- * 01背包
+ * =========== 01背包 ===========
  * 一维：逆序遍历
  * for(int j = capital + 1;j -- >= w[i];)
  *      dp[j] = max(dp[j - w[i]] + v[i], dp[j])
  *
  * 滚动数组：和上一元素结果集（相当于上一行）比较，使用k作为空间位置参数
- * int k = i & 1;
- * dp[k][j] = dp[k ^ 1][j];
+ * int k = i & 1
+ * dp[k][j] = dp[k ^ 1][j]
  * if(j >= w[i])
  *      dp[k][j] = max(dp[k ^ 1][j - w[i]] + v[i], dp[k ^ 1][j])
  *
@@ -18,9 +18,19 @@ package org.tjw.luogu.province;
  * if(j >= w[i])
  *      max(dp[i][j], dp[i][j - w[i]] + v[i])
  *
- * 完全背包
- * 一维：正序遍历
  *
+ * =========== 完全背包 ===========
+ * 一维：正序遍历
+ * for(int j = w[i];j <= capital;j ++)
+ *      dp[j] = max(dp[j - w[i]] + v[i], dp[j])
+ *
+ * 二维：每次 capital_i 的时候，得要比较 capital_i / w[i] 次
+ * int k = capital_i / w[i]
+ * if(k ++ >= 1)
+ *      int temp;
+ *      for(;k -- > 0;)
+ *          temp = max(dp[i - 1][j - w[i] * k] + k * v[i], temp)
+ *      dp[i][j] = max(dp[i - 1][j], temp)
  */
 public class Package {
     // 下标0不算入，从1开始
@@ -47,7 +57,7 @@ public class Package {
 
         // 一百元数量，需要最少张钞票
         System.out.println(mypackage.dp(34, mymoney));
-        System.out.println(mypackage.recurtion(20, mymoney) - 1);
+        System.out.println(mypackage.recurtion(23, mymoney) - 1);
     }
 
 
