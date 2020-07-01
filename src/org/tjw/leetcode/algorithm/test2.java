@@ -1,34 +1,56 @@
 package org.tjw.leetcode.algorithm;
 
+import java.util.Scanner;
+
 public class test2 {
-    int[] aaa;
-    int[] bbb;
-    int[] ccc;
-    int[] ddd;
-    int[] eee;
-
-    public test2() {
-        aaa = new int[10000000];
-        bbb = new int[10000000];
-        ccc = new int[10000000];
-        ddd = new int[10000000];
-        eee = new int[10000000];
-        int a = (int) Math.log(1);
-    }
-
-    public void count() {
-        long begin = System.currentTimeMillis();
-        int count = 0;
-        for(int i = 0;i < aaa.length;i++) count ++;
-        for(int i = 0;i < bbb.length;i++) count ++;
-        for(int i = 0;i < ccc.length;i++) count ++;
-        long end = System.currentTimeMillis();
-        System.out.println(end - begin);
-    }
 
     public static void main(String[] args) throws Exception {
-        test2 test = new test2();
-        test.count();
+        char[] input = new Scanner(System.in).next().toCharArray();
+
+        int status = 0;
+        System.out.print("0");
+        for(char ch : input) {
+            switch (status) {
+                case 0 :
+                    if(ch == 'a') {
+                        System.out.print(" -> 1");
+                        status = 1;
+                    } else {
+                        System.out.print(" -> 0");
+                        status = 0;
+                    }
+                    break;
+                case 1:
+                    if(ch == 'a') {
+                        System.out.print(" -> 1");
+                        status = 1;
+                    } else {
+                        System.out.print(" -> 2");
+                        status = 2;
+                    }
+                    break;
+                case 2:
+                    if(ch == 'a') {
+                        System.out.print(" -> 1");
+                        status = 1;
+                    } else {
+                        System.out.print(" -> 3");
+                        status = 3;
+                    }
+                    break;
+                case 3:
+                    if(ch == 'a') {
+                        System.out.print(" -> 1");
+                        status = 1;
+                    } else {
+                        System.out.print(" -> 0");
+                        status = 0;
+                    }
+                    break;
+            }
+        }
+        if(status == 3) System.out.print(" -> end");
+        else throw new Exception("没结束");
     }
 
 }
