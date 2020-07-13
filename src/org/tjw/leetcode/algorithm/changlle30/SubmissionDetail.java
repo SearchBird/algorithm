@@ -12,7 +12,9 @@ public class SubmissionDetail {
         String str03 = "144432219";
         String str04 = "9";
         String str05 = "11191";
+        String str06 = "1432219";
 
+        System.out.println(solution.removeKdigits(str06, 3));
         System.out.println(solution.removeKdigits(str01, 1000));
         System.out.println(solution.removeKdigits(str02, 1));
         System.out.println(solution.removeKdigits(str03, 3));
