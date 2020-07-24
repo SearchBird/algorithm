@@ -1,15 +1,11 @@
-package org.tjw.leetcode.algorithm;
+package org.tjw.leetcode.algorithm.bst;
 
 import org.tjw.leetcode.algorithm.Recursion.DivideAndConquer.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-public class test2 {
+public class TrimBST {
 
     public static void main(String[] args) throws Exception {
-        Solution s = new test2().new Solution();
+        Solution s = new TrimBST().new Solution();
 
         TreeNode t01 = new TreeNode(1);
         TreeNode t02 = new TreeNode(0);

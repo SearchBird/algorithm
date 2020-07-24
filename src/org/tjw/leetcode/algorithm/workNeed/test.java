@@ -1,9 +1,6 @@
-package org.tjw.leetcode.algorithm;
+package org.tjw.leetcode.algorithm.workNeed;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,32 +19,29 @@ public class test {
         System.out.println(sleepRandom);
     }
 
+    /**
+     * 获取日志 一些关键语句
+     */
     public static void main(String[] args) throws Exception {
-        BufferedReader reader = new BufferedReader(new FileReader("E:\\gitlab\\wtdubbo-2020-02-25\\serv_web\\src\\main\\java\\com\\gffunds\\wtgf\\datac\\dao\\DataCenterMapper.xml"));
+        File dir = new File("E:\\lib");
 
-        String temp = "";
-        HashSet<String> set = new HashSet<String>();
+        File[] files = dir.listFiles();
         StringBuilder builder = new StringBuilder();
-        while((temp = reader.readLine()) != null) {
-            int index = contains(temp);
-            if(contains(temp) != -1) {
-                int last = temp.indexOf(' ', index);
-                if(last == -1)
-                    set.add(temp.substring(index));
-                else
-                    set.add(temp.substring(index, last));
-            }
+        for(File file : files) {
+            builder.append("../lib/").append(file.getName()).append(";");
         }
 
-        for(String str : set) {
-            builder.append(str).append("\r\n");
+        BufferedReader reader = new BufferedReader(new FileReader(""));
+        String str = "";
+        while((str = reader.readLine()) != "") {
+
         }
+
 
         BufferedWriter writer = new BufferedWriter(new FileWriter("E:\\output.txt"));
         writer.write(builder.toString());
         writer.flush();
         writer.close();
-        reader.close();
     }
 
     public static int contains(String temp) {
