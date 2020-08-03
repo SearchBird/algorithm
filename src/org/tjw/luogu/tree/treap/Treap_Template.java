@@ -139,9 +139,7 @@ public class Treap_Template {
         else if(left + r.num < x) {
             return find(r.right,x - r.num - left);
         }
-        else {
-            return r.value;
-        }
+        return r.value;
     }
 
     /**
