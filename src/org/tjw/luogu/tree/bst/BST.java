@@ -110,7 +110,7 @@ public class BST {
     }
 
     public int rank(Node r, int v) {
-        if(r == null) return Integer.MIN_VALUE;
+        if(r == null) return 1;
         else if(r.val > v) return rank(r.left, v);
         else if(r.val < v) return r.num + rank(r.right, v) + (r.left == null ? 0 : r.left.size);
         else return r.left == null ? 1 : r.left.size + 1;
