@@ -94,9 +94,9 @@ public class Treap_Array {
         else return Math.min(val[r], sub(child[r][LEFT], v));
     }
 
+    private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         Treap_Array tree = new Treap_Array();
-        Scanner scanner = new Scanner(System.in);
         int num = scanner.nextInt();
         while(num -- > 0) {
             int opt = scanner.nextInt();

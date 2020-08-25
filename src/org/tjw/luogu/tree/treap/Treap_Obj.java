@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Treap_Template {
+public class Treap_Obj {
     private static int BIN = (int)Math.pow(2,20);
 
     class TreapNode {
@@ -230,8 +230,7 @@ public class Treap_Template {
     }
 
     public static void main(String[] args) {
-        Treap_Template treap1 = new Treap_Template();
-        Treap treap2 = new Treap();
+        Treap_Obj treap1 = new Treap_Obj();
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
         for(int i = 0;i < num;i ++) {
