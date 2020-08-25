@@ -233,7 +233,8 @@ public class Treap_Template {
         Treap_Template treap1 = new Treap_Template();
         Treap treap2 = new Treap();
         Scanner sc = new Scanner(System.in);
-        for(int i = 0;i < 55;i ++) {
+        int num = sc.nextInt();
+        for(int i = 0;i < num;i ++) {
             int opt,x;
             opt = sc.nextInt();
             x = sc.nextInt();
@@ -245,16 +246,8 @@ public class Treap_Template {
                 case 5 : System.out.println(treap1.pre(treap1.ROOT,x)); break;
                 case 6 : System.out.println(treap1.suc(treap1.ROOT,x));
             }
-            switch(opt) {
-                case 1 : treap2.ROOT = treap2.insert(treap2.ROOT,x); break;
-                case 2 : treap2.ROOT = treap2.delete(treap2.ROOT,x); break;
-                case 3 : System.out.println(treap2.rank(treap2.ROOT,x)); break;
-                case 4 : System.out.println(treap2.find(treap2.ROOT,x)); break;
-                case 5 : System.out.println(treap2.pre(treap2.ROOT,x)); break;
-                case 6 : System.out.println(treap2.suc(treap2.ROOT,x));
-            }
 
-            System.out.println(treap1.printTree());
+            //System.out.println(treap1.printTree());
         }
     }
 }
