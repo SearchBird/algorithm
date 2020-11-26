@@ -48,20 +48,17 @@ public class Tree {
 
         // 进行链表封装edge，头插法
         for(int i = 0; i < n - 1; i ++) {
-            tree.addEdge(nn[i][0],  nn[i][1]);
-            tree.addEdge( nn[i][1], nn[i][0]);
+            tree.addEdge(nn[i][0], nn[i][1]);
+            tree.addEdge(nn[i][1], nn[i][0]);
         }
         tree.dp(1, 0);
     }
 
     // 封边，然后添加链表，类似于jdk1.7 hashmap头插法
     public void addEdge(int prev, int to) {
-        // 将当前边指向下一条边，即指向当前head存放的索引
-        edges[++ eid].next = head[prev];
-        // 设置指向节点值
-        edges[eid].to = to;
-        // 将head当前索引指向edges存放的当前边索引
-        head[prev] = eid;
+        edges[++ eid].next = head[prev]; // 将当前边指向下一条边，即指向当前head存放的索引
+        edges[eid].to = to; // 设置指向节点值
+        head[prev] = eid; // 将head当前索引指向edges存放的当前边索引
     }
 
     // 传入当前节点 val，前一个节点 pval
