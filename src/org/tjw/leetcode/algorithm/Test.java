@@ -2,20 +2,20 @@ package org.tjw.leetcode.algorithm;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) throws Throwable {
-
-        List<WalletAssetDetail> list = new ArrayList<>();
-        WalletAssetDetail detail = new WalletAssetDetail();
-        detail.setDdate("20200630");
-        detail.setFundcode("000509");
-        detail.setAvailasset(new BigDecimal("10.01"));
-        list.add(detail);
-
-        BigDecimal res = getMinAvailWalletAmount(list, 29);
-        System.out.println(res);
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        int temp = 0;
+        for(int i = 1;i < num;i ++) {
+            temp += sc.nextInt();
+            System.out.print(temp + " ");
+        }
     }
 
     public static BigDecimal getMinAvailWalletAmount(List<WalletAssetDetail> walletAssetDetailList, int days) {

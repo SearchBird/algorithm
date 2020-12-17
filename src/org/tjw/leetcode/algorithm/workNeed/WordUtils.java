@@ -1,16 +1,20 @@
 package org.tjw.leetcode.algorithm.workNeed;
 
+import com.sun.deploy.util.StringUtils;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.Callable;
 
-public class test {
+public class WordUtils {
+
+    public static void main(String[] args) throws Exception {
+        sqlKeyWordMain();
+    }
+
     private static long MOD = (long) Math.pow(2, 32);
     public void count() throws InterruptedException {
         long sleepRandom = new Double(Math.random()* 1000).longValue() * 3;
@@ -22,7 +26,7 @@ public class test {
     /**
      * 获取日志 一些关键语句
      */
-    public static void main(String[] args) throws Exception {
+    public static void getLogKeyWord(String[] args) throws Exception {
         File dir = new File("E:\\lib");
 
         File[] files = dir.listFiles();
@@ -54,5 +58,32 @@ public class test {
             return index;
         }
         return index;
+    }
+
+
+    /**
+     * 拿插入sql相应关键字
+     */
+    public static void sqlKeyWordMain() throws Exception {
+        BufferedReader reader = new BufferedReader(new FileReader("E:\\glib\\algorithm\\src\\org\\tjw\\leetcode\\algorithm\\workNeed\\testdata\\insertKeyWordFind.txt"));
+        String temp = "";
+        StringBuilder builder = new StringBuilder();
+        while((temp = reader.readLine()) != null) {
+            builder.append(temp);
+        }
+        List<String> res = sqlInsertKeyWordFind(builder.toString(), 3);
+        System.out.println(res);
+    }
+
+    public static List<String> sqlInsertKeyWordFind(String doc, int index) {
+        String[] sqls = doc.split(";");
+        List<String> res = new ArrayList<>();
+        for(String str : sqls) {
+            if(str != null && !"".equals(str)) {
+                int i = str.indexOf("values ") + "values ".length();
+                res.add(str.substring(i, str.length() - 1).split(",")[index]);
+            }
+        }
+        return res;
     }
 }
