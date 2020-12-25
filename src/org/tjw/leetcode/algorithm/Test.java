@@ -1,33 +1,33 @@
 package org.tjw.leetcode.algorithm;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Test {
     public static void main(String[] args) throws Throwable {
-        Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
-        int temp = 0;
-        for(int i = 1;i < num;i ++) {
-            temp += sc.nextInt();
-            System.out.print(temp + " ");
-        }
+
     }
 
-    public static BigDecimal getMinAvailWalletAmount(List<WalletAssetDetail> walletAssetDetailList, int days) {
-        //如果资产持有时间不足闲置天数，认为没有闲钱
-        if (walletAssetDetailList.size() < days) {
-            return BigDecimal.ZERO;
-        }
-        return Collections.min(walletAssetDetailList.subList(0, days), new Comparator<WalletAssetDetail>() {
-            @Override
-            public int compare(WalletAssetDetail o1, WalletAssetDetail o2) {
-                return o1.getAvailasset().compareTo(o2.getAvailasset());
+    class Solution {
+        public int[] nextGreaterElements(int[] nums) {
+            int top = 0, len = nums.length, i;
+            int[] greater = new int[len];
+            int[][] mStack = new int[len][2];
+            for(i = 1, mStack[top][0] = nums[0];i < len;i ++) {
+                while(top >= 0 && nums[i] > mStack[top][0]) {
+                    greater[mStack[top][1]] = nums[i]; top --;
+                }
+                mStack[++ top][0] = nums[i];
+                mStack[top][1] = i;
             }
-        }).getAvailasset();
+            while(top > 0) {
+                greater[mStack[top --][1]] = -1;
+            }
+            return greater;
+        }
     }
 }
