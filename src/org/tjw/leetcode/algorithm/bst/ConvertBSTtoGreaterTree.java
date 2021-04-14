@@ -4,6 +4,7 @@ import org.tjw.leetcode.algorithm.Recursion.DivideAndConquer.TreeNode;
 import org.tjw.leetcode.algorithm.changlle30.PathWithMinimumEffort;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 
 public class ConvertBSTtoGreaterTree {
     public static void main(String[] args) throws ParseException {
@@ -24,24 +25,24 @@ public class ConvertBSTtoGreaterTree {
     class Solution {
         public TreeNode convertBST(TreeNode root) {
             if(root != null) {
-                if(root.right != null) {
-                    convertBST(root.right);
-                    if(root.right.left != null) root.val += root.right.left.val;
-                    else root.val += root.right.val;
-                }
-
-                if(root.left != null) {
-                    convertBST(root.left);
-                    TreeNode temp = root.left;
-                    while(temp != null) {
-                        temp.val += root.val;
-                        temp = temp.right;
-                    }
-                    if(root.left.left != null) root.left.left.val += root.val;
-                }
-
+                // bfs
+                int total = bfs(root);
+                // dfs
+                dfs(root, total);
             }
             return root;
+        }
+
+        public int bfs(TreeNode root) {
+            return root == null ? 0 : bfs(root.left) + bfs(root.right) + root.val;
+        }
+
+        public int dfs(TreeNode root, int total) {
+            if(root.left != null) total = dfs(root.left, total);
+            int temp = total - root.val;
+            root.val = total;
+            if(root.right != null) temp = dfs(root.right, temp);
+            return temp;
         }
     }
 }

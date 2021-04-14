@@ -37,7 +37,7 @@ public class Movetofront {
 
     private static void recover() {
         aToz.clear();
-        for(char ch : "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWSYZ ./(<>):'—_,;".toCharArray())
-            aToz.add(ch);
+        for(int i = 0;i <= 255 ;i ++)
+            aToz.add((char)i);
     }
 }
