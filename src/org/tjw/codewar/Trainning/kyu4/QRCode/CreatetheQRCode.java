@@ -52,7 +52,7 @@ public class CreatetheQRCode {
     }
 
     public static void main(String[] args) throws Throwable {
-        int[][] res = createQrCode("aaaabbb"); // 7字符以内
+        int[][] res = createQrCode("t"); // 7字符以内
 
         System.out.println();
         for(int i = 0; i < res.length; i ++) {
@@ -61,6 +61,7 @@ public class CreatetheQRCode {
             }
             System.out.println();
         }
+        new DrawUtil().new QRDraw(res);
     }
 
     public static int[][] createQrCode(String text) {
