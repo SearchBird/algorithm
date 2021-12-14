@@ -13,7 +13,7 @@ public class QRCodeMain {
         QRTextModEnum textModEnum = QRTextModEnum.BYTE;
         QRMaskPattern maskPattern = QRMaskPattern.M0;
         QRErrorEnum errorEnum = QRErrorEnum.H;
-        String byteSeq = QRDataEncoding.dataEncode("t", textModEnum, versionEnum, errorEnum);
+        String byteSeq = QRDataEncoding.dataEncode("tt", textModEnum, versionEnum, errorEnum);
         String structMsg = QRStructureMSG.struct(byteSeq, versionEnum, errorEnum);
         new DrawUtil().new QRDraw(QRPlacer.createQRPlace(structMsg, versionEnum, errorEnum, maskPattern));
     }
